@@ -83,7 +83,7 @@ void DFS(GPH *g, STK *s, int v_nr) {
     NODE *aux = adj_list;
 
     g->vis[v_nr] = 1;
-    printf("%d ", v_nr);
+    printf("%d ", v_nr + 1);
 
     while (aux != NULL) {
         int con_ver = aux->data;
