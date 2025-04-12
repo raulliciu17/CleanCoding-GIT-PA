@@ -27,13 +27,28 @@ NODE *create_node(int v) {
 
 void add_edge(GPH *g, int src, int dest) {
     NODE *nn = create_node(dest);
-    nn->next = g->alst[src];
-    g->alst[src] = nn;
+    if (g->alst[src] == NULL) {
+        g->alst[src] = nn;
+    } else {
+        NODE *last = g->alst[src];
+        while (last->next != NULL) {
+            last = last->next;
+        }
+        last->next = nn;
+    }
 
     nn = create_node(src);
-    nn->next = g->alst[dest];
-    g->alst[dest] = nn;
+    if (g->alst[dest] == NULL) {
+        g->alst[dest] = nn;
+    } else {
+        NODE *last = g->alst[dest];
+        while (last->next != NULL) {
+            last = last->next;
+        }
+        last->next = nn;
+    }
 }
+
 
 GPH *create_g(int v) {
     int i;
